@@ -1,0 +1,12 @@
+@import "global.scss";
+.header {
+	font-family: $primary-font;
+	background-color: $primary-color;
+	text-align: center;
+	padding: 1rem;
+	.title {
+		color: $secondary-color;
+		font-size: xx-large;
+		text-decoration: none;
+	}
+}
