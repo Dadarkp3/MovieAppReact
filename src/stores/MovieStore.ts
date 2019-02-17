@@ -1,21 +1,23 @@
+import { searchMovieByName } from "./../api/index";
 import { RootStore } from "./";
-import { observable, autorun, action } from "mobx";
+import { observable, action } from "mobx";
+import { IMovie } from "../models/models";
 
 export class MovieStore {
-	protected rootStore: RootStore;
+  protected rootStore: RootStore;
 
-	@observable
-	public movieInput: string = "";
-	@observable
-	public movies = [];
+  @observable
+  public movieInput: string = "";
+  @observable
+  public movies: IMovie[] | null = null;
 
-	@action
-	public searchMovie = (e: any) => {
-		this.movieInput = e;
-		console.log(this.movieInput);
-	};
+  @action
+  public searchMovie = (input: string) => {
+    this.movieInput = input;
+    console.log(searchMovieByName(this.movieInput, 1));
+  };
 
-	public constructor(rootStore: RootStore) {
-		this.rootStore = rootStore;
-	}
+  public constructor(rootStore: RootStore) {
+    this.rootStore = rootStore;
+  }
 }

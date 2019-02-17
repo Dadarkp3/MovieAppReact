@@ -7,9 +7,11 @@
 		"dev": "npx webpack-dev-server"
 	},
 	"dependencies": {
+		"axios": "^0.18.0",
 		"mobx": "^5.5.2",
 		"mobx-react": "^5.3.6",
 		"mobx-react-router": "^4.0.5",
+		"npm": "^6.8.0",
 		"react": "^16.6.0",
 		"react-dom": "^16.6.0",
 		"react-router": "^4.3.1",
