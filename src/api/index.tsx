@@ -9,6 +9,7 @@ export const searchMovieByName = async (query: string, page: number) => {
     const res = await axios.get<IMovieList>(
       `${BASE_URL}/search/movie${API_KEY}&query=${query}&language=pt-BR&page=${page}`
     );
+    console.log(res);
     return res;
   } catch (err) {
     throw new Error("Sorry, couldn't find the movies that you wanted.");
@@ -18,7 +19,7 @@ export const searchMovieByName = async (query: string, page: number) => {
 export const searchMovieByGenre = async (query: string, page: number) => {
   try {
     const res = await axios.get<IMovieList>(
-      `${BASE_URL}/discover/movie${API_KEY}&with_genres=${query}&language=pt-BR&page=${page}`
+      `${BASE_URL}/discover/movie${API_KEY}&with_genres=${query}&language=en-BR&page=${page}`
     );
     return res;
   } catch (err) {
@@ -29,7 +30,7 @@ export const searchMovieByGenre = async (query: string, page: number) => {
 export const searchMovieByYear = async (year: string, page: number) => {
   try {
     const res = await axios.get<IMovieList>(
-      `${BASE_URL}/discover/movie${API_KEY}'&primary_release_year='${year}&language=pt-BR&page=${page}`
+      `${BASE_URL}/discover/movie${API_KEY}'&primary_release_year='${year}&language=en-BR&page=${page}`
     );
     return res;
   } catch (err) {
