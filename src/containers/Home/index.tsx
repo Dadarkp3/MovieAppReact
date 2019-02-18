@@ -3,6 +3,7 @@ import { inject, observer } from "mobx-react";
 import { MovieStore } from "../../stores/MovieStore";
 import { Input } from "../../components/Input";
 import { MovieItem } from "../../components/MovieItem";
+import { IMovie } from "../../models/models";
 
 const s = require("./style.scss");
 
@@ -12,9 +13,14 @@ interface IProps {
 
 @inject("movieStore")
 @observer
-export class Home extends React.Component<IProps, {}> {
-  private handleChangeInput(e: any) {
-    this.props.movieStore.searchMovie(e.target.value);
+export class Home extends React.Component<IProps> {
+  public async componentDidMount() {
+    await this.props.movieStore.searchGenre();
+    await this.props.movieStore.searchFirstMovies();
+  }
+
+  private handleChangeInput(value: string) {
+    this.props.movieStore.searchMovie(value, 1);
   }
 
   public render() {
@@ -23,9 +29,20 @@ export class Home extends React.Component<IProps, {}> {
       <div className={s.container}>
         <Input
           movieInput={movieStore.movieInput}
-          handleChange={(e) => this.handleChangeInput(e)}
+          handleChange={e => this.handleChangeInput(e.target.value)}
         />
-        <MovieItem />
+        {movieStore.movies.results.map((movie: IMovie) => {
+          return (
+            <MovieItem
+              key={+movie.id}
+              title={movie.title}
+              percentage={movie.vote_average}
+              date={movie.release_date}
+              overview={movie.overview}
+              genres={movie.genre}
+            />
+          );
+        })}
       </div>
     );
   }

@@ -1,8 +1,19 @@
 import * as React from "react";
+import { Title } from "../Title/title";
+import { IGenre } from "../../models/models";
+import { GenreButton } from "../GenreButton";
 
 const s = require("./style.scss");
 
-export class MovieItem extends React.Component {
+interface IProps {
+  title: string;
+  percentage: number;
+  date: string;
+  overview: string;
+  genres: IGenre[];
+}
+
+export class MovieItem extends React.Component<IProps> {
   public render() {
     return (
       <div className={s.container}>
@@ -13,8 +24,17 @@ export class MovieItem extends React.Component {
           />
         </figure>
         <div className={s.information}>
-          <div className={s.title} />
-          <div className={s.description} />
+          <Title
+            title={this.props.title}
+            percentage={this.props.percentage}
+            date={this.props.date}
+          />
+          <div className={s.overview}>{this.props.overview}</div>
+          <div className={s.genres}>
+            {this.props.genres.map(genre => {
+              return <GenreButton key={+genre.id} name={genre.name} />;
+            })}
+          </div>
         </div>
       </div>
     );

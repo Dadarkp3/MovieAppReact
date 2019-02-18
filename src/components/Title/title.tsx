@@ -1,24 +1,23 @@
 import * as React from "react";
-import { propTypes } from "mobx-react";
 
 const s = require("./style.scss");
 
 interface IProps {
   title: string;
   date: string;
-  percentage: string;
+  percentage: number;
 }
 
-export class Title extends React.Component<IProps, {}> {
+export class Title extends React.Component<IProps> {
   public render() {
     return (
       <div className={s.container}>
-        <div className={s.title} id="title">
-          <div>{this.props.title}</div>
-          <div />
+        <div className={s.titleContainer} id="title">
+          <div className={s.percentage}>{this.props.percentage}</div>
+          <div className={s.title}>{this.props.title}</div>
         </div>
         <div id="date" className={s.date}>
-          <div>{this.props.date}</div>
+          {this.props.date}
         </div>
       </div>
     );

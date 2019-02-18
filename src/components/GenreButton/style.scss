@@ -1,0 +1,14 @@
+@import "global.scss";
+
+.toolTip {
+  padding: 0.2rem 1rem;
+  text-align: center;
+  background-color: #fff;
+  color: $primary-color;
+  border: 1px solid $primary-color;
+  border-radius: 15px;
+  margin: 0.2rem 0.5rem;
+  font-size: small;
+  cursor: pointer;
+}
+@import "global.scss";
